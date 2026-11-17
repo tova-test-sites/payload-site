@@ -1,5 +1,4 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
@@ -67,7 +66,6 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
-  sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
