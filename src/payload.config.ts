@@ -68,6 +68,8 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
+  // Workers' WebCrypto allows at most 100,000 PBKDF2 iterations (Payload's default is 600,000).
+  auth: { passwordHashIterations: 100000 },
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
