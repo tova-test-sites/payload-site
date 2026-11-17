@@ -59,6 +59,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || process.env.DATABASE_URL || '',
+      // Workers can't reuse a socket opened by an earlier request (the request hangs), so each query gets a fresh connection.
+      maxUses: 1,
     },
   }),
   collections: [Pages, Posts, Media, Categories, Users],
