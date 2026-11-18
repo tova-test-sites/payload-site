@@ -13,6 +13,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { tova } from './tova'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,7 +67,7 @@ export default buildConfig({
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
-  plugins,
+  plugins: [...plugins, tova()],
   secret: process.env.PAYLOAD_SECRET,
   // Workers' WebCrypto allows at most 100,000 PBKDF2 iterations (Payload's default is 600,000).
   auth: { passwordHashIterations: 100000 },
